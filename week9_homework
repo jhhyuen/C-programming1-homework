@@ -1,0 +1,303 @@
+//
+//  main.c
+//  Week_9
+//
+//  Created by 문정현 on 11/3/24.
+//
+
+// MARK : - 실습1
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define SIZE 3
+//
+//struct student {
+//    int number;
+//    char name[20];
+//    double grade;
+//};
+//
+//int main(void)
+//{
+//    struct student s = { 24, "Kim", 4.3 };
+//    struct student* p;
+//
+//    p = &s;
+//
+//    printf("학번=%d 이름=%s 학점=%f \n", s.number, s.name, s.grade);
+//    printf("학번=%d 이름=%s 학점=%f \n", (*p).number, (*p).name, (*p).grade);
+//
+//    return 0;
+//}
+
+// MARK : - 실습2-1
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define SIZE 3
+//
+//struct date {
+//    int month;
+//    int day;
+//    int year;
+//};
+//
+//struct student {
+//    int number;
+//    char name[20];
+//    double grade;
+//    struct date *dob;
+//};
+//
+//int main(void)
+//{
+//    struct date birth = { 5, 15, 2000 };
+//    struct student s = { 24, "Kim", 4.3, &birth };
+//    struct student* p;
+//
+//    p = &s;
+//
+//    printf("학번=%d 이름=%s 학점=%f 생년월일=%d/%d/%d\n", s.number, s.name, s.grade, s.dob->month, s.dob->day, s.dob->year);
+//    printf("학번=%d 이름=%s 학점=%f 생년월일=%d/%d/%d\n", (*p).number, (*p).name, (*p).grade, p->dob->month, p->dob->day, p->dob->year);
+//
+//    return 0;
+//}
+
+
+// MARK : - 실습2-2
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//struct date {
+//    int month;
+//    int day;
+//    int year;
+//};
+//
+//struct student {
+//    int number;
+//    char name[20];
+//    double grade;
+//    struct date *dob;
+//};
+//
+//int main(void)
+//{
+//    struct date d = { 3, 20, 2000 };
+//    struct student s = { 1, "Kim", 4.3 };
+//
+//    s.dob = &d;
+//
+//    printf("학번: %d\n", s.number);
+//    printf("이름: %s\n", s.name);
+//    printf("학점: %f\n", s.grade);
+//    printf("생년월일: %d년 %d월 %d일\n", s.dob->year, s.dob->month, s.dob->day);
+//
+//    return 0;
+//}
+//
+
+// MARK : - 실습 3-1,2
+//#include <stdio.h>
+//
+//struct vector {
+//    double x;
+//    double y;
+//};
+//
+//struct vector get_vector_sum(struct vector a, struct vector b);
+//
+//int main(void)
+//{
+//    struct vector a = { 2.0, 3.0 };
+//    struct vector b = { 5.0, 6.0 };
+//    struct vector sum;
+//
+//    sum = get_vector_sum(a, b);
+//    printf("벡터의 합은 (%f, %f)입니다.\n", sum.x, sum.y);
+//
+//    return 0;
+//}
+//struct vector get_vector_sum(struct vector a, struct vector b)
+//{
+//    struct vector result;
+//
+//    result.x = a.x + b.x;
+//    result.y = a.y + b.y;
+//
+//    return result;
+//}
+
+
+// MARK : - 실습5(4가 ppt에 없음)
+
+//#include <stdio.h>
+//
+//union example {
+//    int i;
+//    char c;
+//};
+//
+//int main(void)
+//{
+//    union example v;
+//
+//    v.c = 'A';
+//    printf("v.c:%c v.i:%i\n", v.c, v.i);
+//
+//    v.i = 10000;
+//    printf("v.c:%c v.i:%i\n", v.c, v.i);
+//
+//    return 0;
+//}
+//
+
+
+
+// MARK : - 실습6-1
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define STU_NUMBER 1
+//#define REG_NUMBER 2
+//
+//struct student {
+//    int type;
+//    union {
+//        int stu_number;  // 학번
+//        char reg_number[15];  // 주민등록번호
+//    } id;
+//    char name[20];
+//};
+//
+//void print(struct student s)
+//{
+//    switch(s.type)
+//    {
+//        case STU_NUMBER:
+//            printf("학번: %d\n", s.id.stu_number);
+//            printf("이름: %s\n", s.name);
+//            break;
+//        case REG_NUMBER:
+//            printf("주민등록번호: %s\n", s.id.reg_number);
+//            printf("이름: %s\n", s.name);
+//            break;
+//        default:
+//            printf("타입 오류\n");
+//            break;
+//    }
+//}
+//
+//int main(void)
+//{
+//    struct student s1, s2;
+//
+//    s1.type = STU_NUMBER;
+//    s1.id.stu_number = 20190001;
+//    strcpy(s1.name, "홍길동");
+//
+//    s2.type = REG_NUMBER;
+//    strcpy(s2.id.reg_number, "860101-1056076");
+//    strcpy(s2.name, "김철수");
+//
+//    print(s1);
+//    print(s2);
+//
+//    return 0;
+//}
+//
+
+// MARK : - 실습7
+
+//#include <stdio.h>
+//
+//enum days { SUN, MON, TUE, WED, THU, FRI, SAT };
+//
+//char *days_name[] = {
+//    "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
+//};
+//
+//int main(void)
+//{
+//    enum days d;
+//    d = WED;
+//    printf("%d번째 요일은 %s입니다\n", d, days_name[d]);
+//    return 0;
+//}
+
+
+// MARK : - 실습 8
+//#include <stdio.h>
+//
+//typedef struct point {
+//    int x;
+//    int y;
+//} POINT;
+//
+//POINT translate(POINT p, POINT delta);
+//
+//int main(void)
+//{
+//    POINT p = { 2, 3 };
+//    POINT delta = { 10, 10 };
+//    POINT result;
+//
+//    result = translate(p, delta);
+//    printf("(%d, %d)+(%d, %d)->(%d, %d)\n", p.x, p.y, delta.x, delta.y, result.x, result.y);
+//    return 0;
+//}
+//
+//POINT translate(POINT p, POINT delta)
+//{
+//    POINT new_p;
+//
+//    new_p.x = p.x + delta.x;
+//    new_p.y = p.y + delta.y;
+//
+//    return new_p;
+//}
+//
+
+
+// MARK : - 실습9
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//#define SIZE 100
+//
+//struct QUESTION {
+//    char question[SIZE];
+//    char item1[SIZE];
+//    char item2[SIZE];
+//    char item3[SIZE];
+//    char item4[SIZE];
+//    int solution;
+//};
+//
+//struct QUESTION bank[2] = {
+//    {"임베디드 장치에 가장 적합한 프로그래밍 언어는?", "1. Python", "2. Java", "3. C", "4. Javascript", 3},
+//    {"서로 다른 자료형을 모을 수 있는 구조는?", "1. 배열", "2. 변수", "3. 구조체", "4. 포인터", 3}
+//};
+//
+//int main(void)
+//{
+//    int select, i;
+//    for (i = 0; i < 2; i++) {
+//        printf("%s\n", bank[i].question);
+//        printf("%s\n", bank[i].item1);
+//        printf("%s\n", bank[i].item2);
+//        printf("%s\n", bank[i].item3);
+//        printf("%s\n", bank[i].item4);
+//        scanf("%d", &select);
+//        if (select == bank[i].solution)
+//            printf("맞았습니다.\n\n");
+//        else
+//            printf("틀렸습니다.\n\n");
+//    }
+//    return 0;
+//}
+//
+
+

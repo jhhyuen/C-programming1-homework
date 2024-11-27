@@ -1,0 +1,384 @@
+//
+//  main.c
+//  week12
+//
+//  Created by 문정현 on 11/23/24.
+//
+
+//#include <stdio.h>
+//
+//int main(void)
+//{
+//    int i;
+//
+//    for (i = 0; i < 5; i++)
+//    {
+//        int temp = 1;
+//        printf("temp = %d\n", temp);
+//        temp++;
+//    }
+//
+//    return 0;
+//}
+
+
+//#include <stdio.h>
+//
+//int all_files;
+//static int this_file;
+//
+//extern void sub();
+//
+//int main(void)
+//{
+//    sub();
+//    printf("%d\n", all_files);
+//    return 0;
+//}
+//
+//extern int all_files;
+//// extern int this_file;  // 사용 불가능 (static linkage)
+//
+//void sub(void)
+//{
+//    all_files = 10;
+//}
+//
+//#define SEED 17
+//int MULT = 25173;
+//int INC = 13849;
+//int MOD = 65536;
+//
+//static unsigned int seed = SEED; // 난수 생성 시드값
+//
+//// 정수 난수 생성 함수
+//unsigned random_i(void)
+//{
+//    seed = (MULT * seed + INC) % MOD; // 난수의 시드값 설정
+//    return seed;
+//}
+//
+//// 실수 난수 생성 함수
+//double random_f(void)
+//{
+//    seed = (MULT * seed + INC) % MOD; // 난수의 시드값 설정
+//    return seed / (double)MOD; // 0.0에서 1.0 사이로 제한
+//}
+//
+//
+
+//#include <stdio.h>
+//
+//extern unsigned random_i(void);
+//extern double random_f(void);
+//
+//extern int MOD;
+//
+//int main(void)
+//{
+//        int i;
+//
+//        MOD = 32767;
+//        for (i = 0; i < 10; i++)
+//                printf("%d ", random_i());
+//
+//        return 0;
+//}
+//
+//
+
+
+#include <stdio.h>
+int main(void)
+{
+    int temp;
+    printf("temp = %d\n", temp);
+    return 0;
+}
+
+
+#include <stdio.h>
+int inc(int counter);
+
+int main(void)
+{
+        int i;
+
+        i = 10;
+        printf("함수 호출전 i=%d\n", i);
+        inc(i);
+        printf("함수 호출후 i=%d\n", i);
+        return 0;
+}
+void  inc(int counter)
+{
+  counter++;
+}
+
+
+#include<stdio.h>
+int A;
+int B;
+int add()
+{
+        return A + B;
+}
+
+int main(void)
+{
+        int answer;
+        A = 5;
+        B = 7;
+        answer = add();
+        printf(“ % d + % d = % d\n”, A, B, answer);
+        return 0;
+}
+
+
+#include <stdio.h>
+
+int counter;
+
+int main(void)
+{
+        printf("counter = % d\n", counter);
+        return 0;
+}
+
+
+#include <stdio.h>
+
+int x;
+void sub();
+
+int main(void)
+{
+        for (x = 0; x < 10; x++)
+                sub();
+}
+
+void sub()
+{
+        for (x = 0; x < 10; x++)
+                printf("*");
+}
+
+
+
+
+#include <stdio.h>
+
+int sum = 1;          // 전역 변수
+
+int main(void)
+{
+  
+        int sum = 0;          // 지역 변수
+
+        printf("sum = %d\n", sum);
+
+        return 0;
+}
+
+
+#include <stdio.h>
+
+void sub() {
+
+        static int scount = 0;
+        int acount = 0;
+        printf("scount = %d\t", scount);
+
+        printf("acount = %d\n", acount);
+        scount++;
+        acount++;
+
+}
+
+int main(void) {
+        sub();
+        sub();
+        sub();
+        return 0;
+}
+
+
+#include <stdio.h>
+
+// amount가 양수이면 입금이고 음수이면 출금으로 생각한다.
+void save(int amount)
+{
+        static long balance = 0;
+
+        if (amount >= 0)
+                printf("%d \t\t", amount);
+        else
+                printf("\t %d \t", -amount);
+
+        balance += amount;
+        printf("%d \n", balance);
+}
+
+int main(void) {
+        printf("==============================\n");
+        printf("입금 \t출금\t 잔고\n");
+        printf("==============================\n");
+        save(10000);
+        save(50000);
+        save(-10000);
+        save(30000);
+        printf("==============================\n");
+        return 0;
+}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void hw_init();
+
+int main(void)
+{
+    hw_init();
+    hw_init();
+    hw_init();
+    return 0;
+}
+
+void hw_init()
+{
+    static int inited = 0;
+    if( inited == 0 ){
+        printf("hw_init(): 네트워크 장치를 초기화합니다. \n");
+        inited = 1;
+    }
+    else {
+        printf("hw_init(): 이미 초기화되었으므로 초기화하지 않습니다. \n");
+    }
+}
+
+
+#include <stdio.h>
+int x = 50;
+
+int main(void)
+{
+        int x = 100;
+        {
+                extern int x;
+                printf("x= %d\n", x);
+        }
+        return 0;
+}
+
+
+
+#include <stdio.h>
+#include <stdarg.h>
+int sum( int, ... );
+int main( void )
+{
+    int answer = sum( 4, 4, 3, 2, 1 );
+    printf( "합은 %d입니다.\n", answer );
+    return( 0 );
+}
+int sum( int num, ... )
+{    int answer = 0;
+    va_list argptr;
+    va_start( argptr, num );
+    for( ; num > 0; num-- )
+        answer += va_arg( argptr, int );
+    va_end( argptr );
+    return( answer );
+}
+
+
+
+// 재귀적인 팩토리얼 함수 계산
+#include <stdio.h>
+
+long factorial(int n)
+{
+        printf("factorial(%d)\n", n);
+
+        if (n <= 1) return 1;
+        else return n * factorial(n - 1);
+}
+
+int main(void)
+{
+        int x = 0;
+        long f;
+
+        printf("정수를 입력하시오:");
+        scanf(“ % d”, &n);
+        printf(“ % d!은 % d입니다. \n”, n, factorial(n));
+        return 0;
+}
+
+
+
+// 2진수 형식으로 출력
+#include <stdio.h>
+
+void print_binary(int x);
+
+int main(void)
+{
+        print_binary(9);
+        printf(“\n”);
+        return 0;
+}
+
+void print_binary(int x)
+{
+        if (x > 0)
+        {
+                print_binary(x / 2);// 재귀 호출
+                printf("%d", x % 2);// 나머지를 출력
+        }
+}
+
+
+// 최대 공약수 구하기
+#include <stdio.h>
+
+int gcd(int x, int y);
+
+int main(void)
+{
+        printf("%d\n", gcd(30, 20));
+}
+
+// x는 y보다 커야 한다.
+int gcd(int x, int y)
+{
+        if (y == 0)
+                return x;
+        else
+                return gcd(y, x % y);
+}
+
+
+#define _CRT_SECURE_NO_WARNINGS
+// 하노이의 탑 문제
+#include <stdio.h>
+
+void hanoi_tower(int n, char from, char tmp, char to);
+
+int main(void)
+{
+        hanoi_tower(4, 'A', 'B', 'C');
+}
+
+void hanoi_tower(int n, char from, char tmp, char to)
+{
+        if (n == 1)
+                printf("원판 1을 %c에서 %c으로 옮긴다.\n", from, to);
+        else
+        {
+                hanoi_tower(n - 1, from, to, tmp);
+                printf("원판 %d을 %c에서 %c으로 옮긴다.\n", n, from, to);
+                hanoi_tower(n - 1, tmp, from, to);
+        }
+}
